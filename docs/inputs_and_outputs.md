@@ -79,8 +79,8 @@ These tables should contain at least:
 Example files:
 
 ```text
-gwas_qtl_pairs.tsv
-gwas_qtl_pairs_xinjiang.tsv
+/storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs.tsv
+/storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs_xinjiang.tsv
 ```
 
 ### COLOC summary tables
@@ -93,3 +93,10 @@ These tables should contain at least:
 - `PP.H4.abf`
 
 Only rows with `PP.H4.abf > cutoff` are treated as coloc-supported genes.
+
+Example files:
+
+```text
+/storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/coloc_new/GWAS.all.addcol.sig.pph4.new
+/storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/coloc_xinjiang/GWAS.all.addcol.sig.pph4
+```

@@ -75,7 +75,7 @@ Summarize all three TWAS result types:
 
 ```bash
 python scripts/summarize_twas_results.py \
-  --twas-root /path/to/twas \
+  --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_result_summary.xlsx \
   --output-dir results/summary
 ```
@@ -84,7 +84,7 @@ Count significant genes:
 
 ```bash
 python scripts/summarize_twas_significance.py \
-  --twas-root /path/to/twas \
+  --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_significance.xlsx \
   --output-dir results/significance
 ```
@@ -93,7 +93,7 @@ Run fair comparison:
 
 ```bash
 python scripts/twas_fair_compare.py \
-  --twas-root /path/to/twas \
+  --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_fair_compare.xlsx \
   --output-dir results/fair_compare
 ```
@@ -102,10 +102,10 @@ Draw GWAS-vs-TWAS-vs-COLOC UpSet plots:
 
 ```bash
 python scripts/plot_twas_coloc_upset.py \
-  --spredixcan-root /path/to/twas/02.SPrediXcan/results_full_inputs_v2 \
-  --smultixcan-root /path/to/twas/03.SMulTiXcan/results_full_inputs_v2 \
-  --overlap-tsv /path/to/gwas_qtl_pairs.tsv /path/to/gwas_qtl_pairs_xinjiang.tsv \
-  --coloc-tsv /path/to/coloc_beijing.tsv /path/to/coloc_xinjiang.tsv \
+  --spredixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/02.SPrediXcan/results_full_inputs_v2 \
+  --smultixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/03.SMulTiXcan/results_full_inputs_v2 \
+  --overlap-tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs.tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs_xinjiang.tsv \
+  --coloc-tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/coloc_new/GWAS.all.addcol.sig.pph4.new /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/coloc_xinjiang/GWAS.all.addcol.sig.pph4 \
   --output-dir results/upset_final
 ```
 
@@ -225,7 +225,7 @@ pip install -r requirements.txt
 
 ```bash
 python scripts/summarize_twas_results.py \
-  --twas-root /path/to/twas \
+  --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_result_summary.xlsx \
   --output-dir results/summary
 ```
@@ -234,7 +234,7 @@ python scripts/summarize_twas_results.py \
 
 ```bash
 python scripts/summarize_twas_significance.py \
-  --twas-root /path/to/twas \
+  --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_significance.xlsx \
   --output-dir results/significance
 ```
@@ -243,7 +243,7 @@ python scripts/summarize_twas_significance.py \
 
 ```bash
 python scripts/twas_fair_compare.py \
-  --twas-root /path/to/twas \
+  --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_fair_compare.xlsx \
   --output-dir results/fair_compare
 ```
@@ -252,10 +252,10 @@ python scripts/twas_fair_compare.py \
 
 ```bash
 python scripts/plot_twas_coloc_upset.py \
-  --spredixcan-root /path/to/twas/02.SPrediXcan/results_full_inputs_v2 \
-  --smultixcan-root /path/to/twas/03.SMulTiXcan/results_full_inputs_v2 \
-  --overlap-tsv /path/to/gwas_qtl_pairs.tsv /path/to/gwas_qtl_pairs_xinjiang.tsv \
-  --coloc-tsv /path/to/coloc_beijing.tsv /path/to/coloc_xinjiang.tsv \
+  --spredixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/02.SPrediXcan/results_full_inputs_v2 \
+  --smultixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/03.SMulTiXcan/results_full_inputs_v2 \
+  --overlap-tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs.tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs_xinjiang.tsv \
+  --coloc-tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/coloc_new/GWAS.all.addcol.sig.pph4.new /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/coloc_xinjiang/GWAS.all.addcol.sig.pph4 \
   --output-dir results/upset_final
 ```
 
