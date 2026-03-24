@@ -4,13 +4,13 @@ set -euo pipefail
 # 用法：
 #   1. 先修改或复制 config/twas_config.example.sh
 #   2. export TWAS_CONFIG=/path/to/your_config.sh
-#   3. bash scripts/submit_plot_twas_coloc_upset.sh
+#   3. bash scripts/plot/submit_plot_twas_coloc_upset.sh
 #
 # 这个脚本会优先尝试用 jsub 提交到计算节点；
 # 如果当前环境没有 jsub，则直接在当前节点运行。
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 if [[ -z "${TWAS_CONFIG:-}" ]]; then
   echo "ERROR: Please export TWAS_CONFIG=/path/to/twas_config.sh first." >&2
@@ -28,7 +28,7 @@ source "${TWAS_CONFIG}"
 mkdir -p "${UPSET_OUTPUT_DIR}/logs"
 
 cmd=(
-  python "${REPO_ROOT}/scripts/plot_twas_coloc_upset.py"
+  python "${REPO_ROOT}/scripts/plot/plot_twas_coloc_upset.py"
   --spredixcan-root "${SPREDIXCAN_RESULTS_DIR}"
   --smultixcan-root "${SMULTIXCAN_RESULTS_DIR}"
   --output-dir "${UPSET_OUTPUT_DIR}"

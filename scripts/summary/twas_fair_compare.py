@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import sys
 
 import pandas as pd
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from twas_utils import add_common_args, bh_fdr, build_paths, parse_spredixcan_name, parse_smultixcan_name, read_gene_pvalues
 
@@ -104,4 +107,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

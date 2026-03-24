@@ -23,7 +23,7 @@ Filter single-tissue `SPrediXcan` results to biologically matched tissues, then 
 Use:
 
 ```bash
-bash scripts/run_smultixcan_related.sh <trait> config/twas_config.sh
+bash scripts/run/run_smultixcan_related.sh <trait> config/twas_config.sh
 ```
 
 Store outputs under:
@@ -34,10 +34,10 @@ Store outputs under:
 
 ## 4. Result Summaries
 
-- `summarize_twas_results.py`
-- `summarize_twas_single_full.py`
-- `summarize_twas_significance.py`
-- `twas_fair_compare.py`
+- `scripts/summary/summarize_twas_results.py`
+- `scripts/summary/summarize_twas_single_full.py`
+- `scripts/summary/summarize_twas_significance.py`
+- `scripts/summary/twas_fair_compare.py`
 
 These scripts generate manuscript-facing summary tables and comparison sheets.
 
@@ -48,7 +48,7 @@ Use the final `SPrediXcan`, final all-tissue `SMulTiXcan`, GWAS-QTL overlap tabl
 Core script:
 
 ```bash
-python scripts/plot_twas_coloc_upset.py \
+python scripts/plot/plot_twas_coloc_upset.py \
   --spredixcan-root /path/to/twas/02.SPrediXcan/results_full_inputs_v2 \
   --smultixcan-root /path/to/twas/03.SMulTiXcan/results_full_inputs_v2 \
   --overlap-tsv /path/to/gwas_qtl_pairs.tsv /path/to/gwas_qtl_pairs_xinjiang.tsv \
@@ -60,7 +60,7 @@ Cluster submission wrapper:
 
 ```bash
 export TWAS_CONFIG=/path/to/twas_config.sh
-bash scripts/submit_plot_twas_coloc_upset.sh
+bash scripts/plot/submit_plot_twas_coloc_upset.sh
 ```
 
 Outputs include:

@@ -30,14 +30,17 @@ sheep-twas/
 ├── examples/
 │   └── run_examples.sh
 ├── scripts/
-│   ├── run_smultixcan_related.sh
-│   ├── submit_plot_twas_coloc_upset.sh
-│   ├── plot_twas_coloc_upset.py
-│   ├── summarize_twas_results.py
-│   ├── summarize_twas_significance.py
-│   ├── summarize_twas_single_full.py
-│   ├── twas_fair_compare.py
-│   └── twas_utils.py
+│   ├── twas_utils.py
+│   ├── run/
+│   │   └── run_smultixcan_related.sh
+│   ├── plot/
+│   │   ├── plot_twas_coloc_upset.py
+│   │   └── submit_plot_twas_coloc_upset.sh
+│   └── summary/
+│       ├── summarize_twas_results.py
+│       ├── summarize_twas_significance.py
+│       ├── summarize_twas_single_full.py
+│       └── twas_fair_compare.py
 ├── .gitignore
 └── requirements.txt
 ```
@@ -74,7 +77,7 @@ pip install -r requirements.txt
 Summarize all three TWAS result types:
 
 ```bash
-python scripts/summarize_twas_results.py \
+python scripts/summary/summarize_twas_results.py \
   --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_result_summary.xlsx \
   --output-dir results/summary
@@ -83,7 +86,7 @@ python scripts/summarize_twas_results.py \
 Count significant genes:
 
 ```bash
-python scripts/summarize_twas_significance.py \
+python scripts/summary/summarize_twas_significance.py \
   --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_significance.xlsx \
   --output-dir results/significance
@@ -92,7 +95,7 @@ python scripts/summarize_twas_significance.py \
 Run fair comparison:
 
 ```bash
-python scripts/twas_fair_compare.py \
+python scripts/summary/twas_fair_compare.py \
   --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_fair_compare.xlsx \
   --output-dir results/fair_compare
@@ -101,7 +104,7 @@ python scripts/twas_fair_compare.py \
 Draw GWAS-vs-TWAS-vs-COLOC UpSet plots:
 
 ```bash
-python scripts/plot_twas_coloc_upset.py \
+python scripts/plot/plot_twas_coloc_upset.py \
   --spredixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/02.SPrediXcan/results_full_inputs_v2 \
   --smultixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/03.SMulTiXcan/results_full_inputs_v2 \
   --overlap-tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs.tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs_xinjiang.tsv \
@@ -113,29 +116,29 @@ Submit the same plotting workflow on a cluster:
 
 ```bash
 export TWAS_CONFIG=/path/to/twas_config.sh
-bash scripts/submit_plot_twas_coloc_upset.sh
+bash scripts/plot/submit_plot_twas_coloc_upset.sh
 ```
 
 ## What The Scripts Report
 
-### `summarize_twas_results.py`
+### `scripts/summary/summarize_twas_results.py`
 
 - file-level summary for `SPrediXcan`, all-tissue `SMulTiXcan`, and related-tissue `SMulTiXcan`
 - top gene and top p-value per file
 - all-tissue vs related-tissue comparison
 
-### `summarize_twas_significance.py`
+### `scripts/summary/summarize_twas_significance.py`
 
 - per-file counts of nominally significant genes (`p < 0.05`)
 - per-file counts of `BH-FDR < 0.05` genes
 - aggregation by method, trait, QTL, and tissue
 
-### `twas_fair_compare.py`
+### `scripts/summary/twas_fair_compare.py`
 
 - number of `trait × qtl` combinations with at least one `FDR < 0.05` gene
 - deduplicated unique significant genes for each method
 
-### `plot_twas_coloc_upset.py`
+### `scripts/plot/plot_twas_coloc_upset.py`
 
 - normalize gene IDs across QTL types
 - map `GWAS loci` to candidate genes
@@ -180,14 +183,17 @@ sheep-twas/
 ├── examples/
 │   └── run_examples.sh
 ├── scripts/
-│   ├── run_smultixcan_related.sh
-│   ├── submit_plot_twas_coloc_upset.sh
-│   ├── plot_twas_coloc_upset.py
-│   ├── summarize_twas_results.py
-│   ├── summarize_twas_significance.py
-│   ├── summarize_twas_single_full.py
-│   ├── twas_fair_compare.py
-│   └── twas_utils.py
+│   ├── twas_utils.py
+│   ├── run/
+│   │   └── run_smultixcan_related.sh
+│   ├── plot/
+│   │   ├── plot_twas_coloc_upset.py
+│   │   └── submit_plot_twas_coloc_upset.sh
+│   └── summary/
+│       ├── summarize_twas_results.py
+│       ├── summarize_twas_significance.py
+│       ├── summarize_twas_single_full.py
+│       └── twas_fair_compare.py
 ├── .gitignore
 └── requirements.txt
 ```
@@ -224,7 +230,7 @@ pip install -r requirements.txt
 汇总三类 TWAS 结果：
 
 ```bash
-python scripts/summarize_twas_results.py \
+python scripts/summary/summarize_twas_results.py \
   --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_result_summary.xlsx \
   --output-dir results/summary
@@ -233,7 +239,7 @@ python scripts/summarize_twas_results.py \
 统计显著基因：
 
 ```bash
-python scripts/summarize_twas_significance.py \
+python scripts/summary/summarize_twas_significance.py \
   --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_significance.xlsx \
   --output-dir results/significance
@@ -242,7 +248,7 @@ python scripts/summarize_twas_significance.py \
 做三类方法的公平比较：
 
 ```bash
-python scripts/twas_fair_compare.py \
+python scripts/summary/twas_fair_compare.py \
   --twas-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas \
   --output-xlsx results/twas_fair_compare.xlsx \
   --output-dir results/fair_compare
@@ -251,7 +257,7 @@ python scripts/twas_fair_compare.py \
 绘制 `GWAS loci vs 单组织 TWAS vs 多组织 TWAS vs COLOC` 的 UpSet 图：
 
 ```bash
-python scripts/plot_twas_coloc_upset.py \
+python scripts/plot/plot_twas_coloc_upset.py \
   --spredixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/02.SPrediXcan/results_full_inputs_v2 \
   --smultixcan-root /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/twas/03.SMulTiXcan/results_full_inputs_v2 \
   --overlap-tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs.tsv /storage/public/home/2020060185/00.sheep_goatGTEx/01.sheepGTEx/04.gwas_coloc/gwas_qtl_pairs_xinjiang.tsv \
@@ -263,29 +269,29 @@ python scripts/plot_twas_coloc_upset.py \
 
 ```bash
 export TWAS_CONFIG=/path/to/twas_config.sh
-bash scripts/submit_plot_twas_coloc_upset.sh
+bash scripts/plot/submit_plot_twas_coloc_upset.sh
 ```
 
 ## 各脚本输出什么
 
-### `summarize_twas_results.py`
+### `scripts/summary/summarize_twas_results.py`
 
 - `SPrediXcan`、全组织 `SMulTiXcan`、相关组织 `SMulTiXcan` 的逐文件汇总
 - 每个结果文件的 top gene 和 top p-value
 - 全组织多组织与相关组织多组织的对比结果
 
-### `summarize_twas_significance.py`
+### `scripts/summary/summarize_twas_significance.py`
 
 - 每个结果文件中 nominal 显著基因数（`p < 0.05`）
 - 每个结果文件中 `BH-FDR < 0.05` 显著基因数
 - 按方法、性状、QTL、组织进行聚合统计
 
-### `twas_fair_compare.py`
+### `scripts/summary/twas_fair_compare.py`
 
 - 每种方法中有多少个 `trait × qtl` 至少出现 1 个 `FDR < 0.05` 基因
 - 每种方法去重后的显著基因数
 
-### `plot_twas_coloc_upset.py`
+### `scripts/plot/plot_twas_coloc_upset.py`
 
 - 统一不同 `QTL_type` 下的基因命名
 - 将 `GWAS loci` 映射到候选基因集合

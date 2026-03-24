@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import sys
 
 import matplotlib
 
@@ -9,6 +10,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 from upsetplot import UpSet, from_memberships
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from twas_utils import bh_fdr, read_gene_pvalues
 
