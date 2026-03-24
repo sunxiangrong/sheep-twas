@@ -16,6 +16,7 @@ The current scaffold covers:
 - `SMulTiXcan` related-tissue rerun
 - significance counting with per-file `BH-FDR`
 - fair comparison across three TWAS result types
+- `GWAS loci vs S-PrediXcan vs S-MultiXcan vs COLOC` UpSet plotting
 
 ## Repository Layout
 
@@ -30,6 +31,8 @@ sheep-twas/
 │   └── run_examples.sh
 ├── scripts/
 │   ├── run_smultixcan_related.sh
+│   ├── submit_plot_twas_coloc_upset.sh
+│   ├── plot_twas_coloc_upset.py
 │   ├── summarize_twas_results.py
 │   ├── summarize_twas_significance.py
 │   ├── summarize_twas_single_full.py
@@ -95,6 +98,24 @@ python scripts/twas_fair_compare.py \
   --output-dir results/fair_compare
 ```
 
+Draw GWAS-vs-TWAS-vs-COLOC UpSet plots:
+
+```bash
+python scripts/plot_twas_coloc_upset.py \
+  --spredixcan-root /path/to/twas/02.SPrediXcan/results_full_inputs_v2 \
+  --smultixcan-root /path/to/twas/03.SMulTiXcan/results_full_inputs_v2 \
+  --overlap-tsv /path/to/gwas_qtl_pairs.tsv /path/to/gwas_qtl_pairs_xinjiang.tsv \
+  --coloc-tsv /path/to/coloc_beijing.tsv /path/to/coloc_xinjiang.tsv \
+  --output-dir results/upset_final
+```
+
+Submit the same plotting workflow on a cluster:
+
+```bash
+export TWAS_CONFIG=/path/to/twas_config.sh
+bash scripts/submit_plot_twas_coloc_upset.sh
+```
+
 ## What The Scripts Report
 
 ### `summarize_twas_results.py`
@@ -113,6 +134,13 @@ python scripts/twas_fair_compare.py \
 
 - number of `trait × qtl` combinations with at least one `FDR < 0.05` gene
 - deduplicated unique significant genes for each method
+
+### `plot_twas_coloc_upset.py`
+
+- normalize gene IDs across QTL types
+- map `GWAS loci` to candidate genes
+- intersect loci with final `S-PrediXcan`, `S-MultiXcan`, and `COLOC` support
+- draw one overall UpSet plot and one UpSet plot per trait
 
 ## Notes For Public Release
 
@@ -138,6 +166,7 @@ python scripts/twas_fair_compare.py \
 - `SMulTiXcan` 相关组织重跑脚本
 - 基于每个结果文件内部 `BH-FDR` 的显著性统计
 - 三类 TWAS 结果的公平比较
+- `GWAS loci vs S-PrediXcan vs S-MultiXcan vs COLOC` 的 UpSet 作图
 
 ## 仓库结构
 
@@ -152,6 +181,8 @@ sheep-twas/
 │   └── run_examples.sh
 ├── scripts/
 │   ├── run_smultixcan_related.sh
+│   ├── submit_plot_twas_coloc_upset.sh
+│   ├── plot_twas_coloc_upset.py
 │   ├── summarize_twas_results.py
 │   ├── summarize_twas_significance.py
 │   ├── summarize_twas_single_full.py
@@ -217,6 +248,24 @@ python scripts/twas_fair_compare.py \
   --output-dir results/fair_compare
 ```
 
+绘制 `GWAS loci vs 单组织 TWAS vs 多组织 TWAS vs COLOC` 的 UpSet 图：
+
+```bash
+python scripts/plot_twas_coloc_upset.py \
+  --spredixcan-root /path/to/twas/02.SPrediXcan/results_full_inputs_v2 \
+  --smultixcan-root /path/to/twas/03.SMulTiXcan/results_full_inputs_v2 \
+  --overlap-tsv /path/to/gwas_qtl_pairs.tsv /path/to/gwas_qtl_pairs_xinjiang.tsv \
+  --coloc-tsv /path/to/coloc_beijing.tsv /path/to/coloc_xinjiang.tsv \
+  --output-dir results/upset_final
+```
+
+如果要提交到集群跑：
+
+```bash
+export TWAS_CONFIG=/path/to/twas_config.sh
+bash scripts/submit_plot_twas_coloc_upset.sh
+```
+
 ## 各脚本输出什么
 
 ### `summarize_twas_results.py`
@@ -235,6 +284,13 @@ python scripts/twas_fair_compare.py \
 
 - 每种方法中有多少个 `trait × qtl` 至少出现 1 个 `FDR < 0.05` 基因
 - 每种方法去重后的显著基因数
+
+### `plot_twas_coloc_upset.py`
+
+- 统一不同 `QTL_type` 下的基因命名
+- 将 `GWAS loci` 映射到候选基因集合
+- 用最终版 `TWAS` 结果与 `COLOC` 结果做交集
+- 生成总图和每个性状的 UpSet 图
 
 ## 公开发布前建议
 
